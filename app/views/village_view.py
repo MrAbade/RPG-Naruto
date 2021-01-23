@@ -15,7 +15,7 @@ def list_villages():
 
     except Exception as error:
         print(error)
-        return {'msg': error.message}, 400
+        return {'msg': str(error)}, 400
 
 
 @bp_village.route('/', methods=['POST'])
@@ -29,4 +29,4 @@ def create_village():
 
     except Exception as error:
         print(error)
-        return {'msg': error.message}, 400
+        return {'msg': str(error)}, 400
