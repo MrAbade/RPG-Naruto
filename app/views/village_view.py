@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from http import HTTPStatus
 
 from ..models import Village
 from ..schema import village_schema_list, village_schema
@@ -11,11 +12,11 @@ bp_village = Blueprint('bp_village', __name__)
 def list_villages():
     try:
         village_list = Village.query.all()
-        return village_schema_list.dump(village_list), 200
+        return village_schema_list.dump(village_list), HTTPStatus.OK
 
     except Exception as error:
         print(error)
-        return {'msg': str(error)}, 400
+        return {'msg': str(error)}, HTTPStatus.BAD_REQUEST
 
 
 @bp_village.route('/', methods=['POST'])
@@ -25,8 +26,8 @@ def create_village():
         village = Village(name=village_body['name'])
         village.save(True)
 
-        return village_schema.dump(village), 201
+        return village_schema.dump(village), HTTPStatus.CREATED
 
     except Exception as error:
         print(error)
-        return {'msg': str(error)}, 400
+        return {'msg': str(error)}, HTTPStatus.BAD_REQUEST

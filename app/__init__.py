@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 
 from config import config_selector
 from app.configs import config_db
+from app.views import config_views
 
 
 def create_app(config='production'):
@@ -16,5 +17,7 @@ def create_app(config='production'):
 
     config_db(app)
     Migrate(app, app.db)
+
+    config_views(app)
 
     return app
