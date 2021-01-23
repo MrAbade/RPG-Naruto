@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "naruto-rpg"
+version = "0.1.0"
+description = ""
+authors = ["Vinicius Abade <vinicius@kenzie.com.br>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Flask = "^1.1.2"
+Flask-SQLAlchemy = "^2.4.4"
+marshmallow-sqlalchemy = "^0.24.1"
+Flask-Cors = "^3.0.10"
+Flask-Migrate = "^2.6.0"
+psycopg2 = "^2.8.6"
+environs = "^9.3.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
