@@ -1,22 +1,10 @@
-class Config:
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+from dynaconf import Dynaconf
 
-class DevelopmentConfig(Config):
-    env = 'development'
-    SQLALCHEMY_DATABASE_URI = 'postgresql://mrabade:pain321123@localhost:5432/Naruto'
-    
+settings = Dynaconf(
+    envvar_prefix="DYNACONF",
+    settings_files=['settings.toml', '.secrets.toml'],
+)
 
-class ProductionConfig(Config):
-    ...
-
-
-class TestConfig(Config):
-    ...
-
-
-config_selector = {
-    'development': DevelopmentConfig,
-    'test': TestConfig,
-    'production': ProductionConfig
-}
+# `envvar_prefix` = export envvars with `export DYNACONF_FOO=bar`.
+# `settings_files` = Load this files in the order.
