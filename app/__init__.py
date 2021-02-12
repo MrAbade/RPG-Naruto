@@ -1,4 +1,4 @@
-__version__ = '0.1.3'
+__version__ = '0.2.0'
 
 from flask import Flask
 from flask_cors import CORS
@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 from dynaconf import FlaskDynaconf
 
 from app.configs import config_db
+from app.configs import config_jwt
 from app.views import config_views
 
 
@@ -17,7 +18,8 @@ def create_app(config='production'):
 
     config_db(app)
     Migrate(app, app.db)
-
+    
+    config_jwt(app)
     config_views(app)
 
     return app
