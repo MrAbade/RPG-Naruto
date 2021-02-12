@@ -16,7 +16,7 @@ class BaseModel(db.Model):
     def before_save(self, *args, **kwargs):
         return
 
-    def before_save(self, *args, **kwargs):
+    def after_save(self, *args, **kwargs):
         return
 
     def save(self, commit=True):
@@ -30,7 +30,7 @@ class BaseModel(db.Model):
                 db.session.rollback()
                 raise error
 
-        self.before_save()
+        self.after_save()
 
     def delete(self, commit=True):
         db.session.delete(self)
